@@ -11,13 +11,38 @@ void caixa(int value) {
   int n10 = 0;
   int n5 = 0;
   int n2 = 0;
+  int r5 = 0;
+
+  if (value % 5 == 1 || value % 5 == 3) {
+    value -= 5;
+    r5++;
+  }
 
   n100 = value ~/ 100;
-  n50 = (value - (100 * n100)) ~/ 50;
-  n20 = (value - ((100 * n100) + (50 * n50))) ~/ 20;
-  n10 = (value - ((100 * n100) + (50 * n50) + (20 * n20))) ~/ 10;
-  n5 = (value - ((100 * n100) + (50 * n50) + (20 * n20) + (10 * n10))) ~/ 5;
-  n2 = (value - ((100 * n100) + (50 * n50) + (20 * n20) + (10 * n10) + (5 * n5))) ~/ 2;
+  value %= 100;
+  n50 = value ~/ 50;
+  value %= 50;
+  n20 = value ~/ 20;
+  value %= 20;
+  n10 = value ~/ 10;
+  value %= 10;
+
+  if (r5 > 0) {
+    n5 = value ~/ 5;
+    n5++;
+  } else {
+    n5 = value ~/ 5;
+  }
+
+  value %= 5;
+
+  if (value == 3 || value == 1) {
+    n5--;
+    value += 5;
+  }
+
+  n2 = value ~/ 2;
+  value %= 2;
 
   String c100 = '$n100 de 100';
   String c50 = '$n50 de 50';
@@ -26,12 +51,12 @@ void caixa(int value) {
   String c5 = '$n5 de 5';
   String c2 = '$n2 de 2';
 
+  var text = '';
+
   if (value % 5 == 1 || value % 5 == 3) {
     value -= 5;
     n5++;
   }
-
-  var text = '';
 
   if (n100 > 0) {
     text += c100;
@@ -78,6 +103,7 @@ void caixa(int value) {
   }
 
   print(text);
+  
 }
 
 // Nao deletar
