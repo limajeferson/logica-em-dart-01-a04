@@ -1,2 +1,2 @@
-# logica-em-dart-01-a04
- 20211216 exercicios em logica da aula 04 pra dart
+A sample command-line application with an entrypoint in `bin/`, library code
+in `lib/`, and example unit test in `test/`.
